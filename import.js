@@ -13,7 +13,7 @@ function _import (file, data = {}, onload = function(){}) {
 	}
 	script.xmlhttpreq = new XMLHttpRequest;
 	script.xmlhttpreq.open("GET", file, false);
-	script.xmlhttpreq.send(null);
+	script.xmlhttpreq.send(new Date().getTime());
 	if(script.type == 'js') {
 		script.tag = document.createElement('script');
 		script.tag.src = file;
