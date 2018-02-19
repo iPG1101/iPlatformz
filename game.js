@@ -35,7 +35,7 @@ var movingCamera = true;
 				this.h = inf[3];
 				this.c = inf[4];
 				this.check = function(pos, w, h){
-					if(this.x + this.w - w*0.75 > pos.x && this.x - w*0.75 < pos.x) {
+					if(this.x + this.w - w/2 > pos.x && this.x - w*0.75 < pos.x) {
 						if(this.y < pos.y + pos.velocityY + h/2) {
 							pos.onFloor = true;
 							pos.velocityY = 0;

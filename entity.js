@@ -26,10 +26,10 @@ function Character (pos = new Vector()) {
 		} else if (shift) {
 			shift = false;
 		}
+		this.position.update();
 		for(var p of platforms) {
 			p.check(this.position, this.w, this.h);
 		}
-		this.position.update();
 		this.energy += 0.33;
 		if(this.energy >= 100) this.energy = 100;
 	};
