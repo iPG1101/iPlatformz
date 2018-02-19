@@ -26,11 +26,12 @@ function Character (pos = new Vector()) {
 		} else if (shift) {
 			shift = false;
 		}
-		this.position.update();
+		this.onFloor = false;
 		for(var p of platforms) {
 			p.check(this.position, this.w, this.h);
 		}
 		this.energy += 0.33;
+		this.position.update();
 		if(this.energy >= 100) this.energy = 100;
 	};
 	this.updateTexture = function(){
@@ -96,6 +97,7 @@ function Character (pos = new Vector()) {
 var shift = false;
 window.onkeydown = function(e){
 	var key = String.fromCharCode(e.keyCode);
+	if('wasd'.includes(key.toLowerCase())) e.preventDefault();
 	if(e.keyCode == 16 && game.char.energy > 40) {
 		shift = true;
 	}
@@ -110,6 +112,7 @@ window.onkeydown = function(e){
 }
 window.onkeyup = function(e){
 	var key = String.fromCharCode(e.keyCode);
+	if('wasd'.includes(key.toLowerCase())) e.preventDefault();
 	if(e.keyCode == 16) {
 		shift = false;
 	}
