@@ -1,0 +1,26 @@
+{
+	"platforms": [
+		[0, 600, 896, 200, "#3A6"],
+		[640, 500, 256, 100, "#3A6"],
+		[1000, 500, 128, 300, "#3A6"],
+		[1400, 500, 128, 300, "#3A6"],
+	],
+	"signs": [
+		{
+			"text": "Welcome to iPlatformz!\n To move, you can use the [A] and\n [D] keys. Try it! And to jump you\n can use [W]. Try jumping to the\n next platforms!",
+			"position": [440, 44],
+			"size": [400, 200],
+			"stands": [[440,244,20,356,"#763"],[820,244,20,256,"#763"]],
+			"colour": ["#CBA", "#420"],
+			"font-size": "24px"
+		},
+		{
+			"text": "Sprinting\n If you need to jump further, you\n can use [shift] to sprint!",
+			"position": [1108, 270],
+			"size": [312, 122],
+			"stands": [[1108,392,20,108,"#763"],[1400,392,20,108,"#763"]],
+			"colour": ["#CBA", "#420"],
+			"font-size": "20px"
+		}
+	]
+}

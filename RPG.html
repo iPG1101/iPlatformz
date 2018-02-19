@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>iPlatformz</title>
+	<style>
+		#background, #character {
+			display: none;
+		}
+	</style>
+	<script src='import.js'></script>
+</head>
+<body>
+	<canvas id='background' width=1280 height=800></canvas>
+	<canvas id='character' width=320 height=525></canvas>
+	<!--
+		I render the character in a seperate canvas, it makes
+		it easier to display on the main canvas, which is generated
+		in javascript
+	-->
+	<script>
+		var config = _import('config.json', {}, console.log);
+		var background = _import('background.js')
+		var gamejs = _import('game.js', {'depends': ['vector.js', 'entity.js']});
+	</script>
+	<!--
+	  iPG1101@aol.com
+	  Please report bugs
+		-->
+</body>
+</html>
