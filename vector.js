@@ -8,6 +8,7 @@ Vector.prototype.update = function(){
 	this.x += this.velocityX;
 	this.y += this.velocityY;
 	this.velocityY += 0.3;
+	this.onFloor = false;
 };
 Vector.prototype.updateX = function(){
 	this.x += this.velocityX * 0.5;
