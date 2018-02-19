@@ -10,6 +10,7 @@ Vector.prototype.update = function(){
 	this.velocityY += 0.3;
 	this.onFloor = false;
 };
-Vector.prototype.updateX = function(){
-	this.x += this.velocityX * 0.5;
+Vector.prototype.updateX = function(multiplier = 0.5){
+	this.x += this.velocityX * multiplier;
+	//This is for when `shift` is held, deprecated, and useless
 };
