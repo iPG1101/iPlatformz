@@ -35,23 +35,41 @@ var movingCamera = true;
 				this.h = inf[3];
 				this.c = inf[4];
 				this.check = function(pos, w, h){
+					if(this.c instanceof Object){
+						if(this.c.passthrough) {
+							return;
+						}
+					}
 					if(this.x + this.w - w/2 > pos.x + pos.velocityX*(shift?2.5:1) && this.x - w*0.75 < pos.x + pos.velocityX*(shift?2.5:1)) {
-						if(this.y < pos.y + h/2) {
+						if(this.y < pos.y + h/2 && this.y +this.h> pos.y) {
 							pos.velocityX = 0;
 						};
 					};
 					if(this.x + this.w - w/2 > pos.x && this.x - w*0.75 < pos.x) {
-						if(this.y < pos.y + pos.velocityY + h/2) {
+						if(this.y < pos.y +pos.velocityY+ h/2 && this.y +this.h> pos.y+pos.velocityY) {
 							pos.onFloor = true;
 							pos.velocityY = 0;
 						}
-						else pos.onFloor = false;
 					}
 				};
-				this.show = function(context){
+				if(!(this.c instanceof Object)) this.show = function(context){
 					context.fillStyle = this.c;
 					if(!movingCamera) context.fillRect(this.x,this.y,this.w,this.h);
 					if(movingCamera) context.fillRect(this.x-game.char.position.x+640,this.y,this.w,this.h);
+				};
+				else {
+					this.show = function(context){
+						for(var i in game.levels[id].custom_platforms[this.c.type].parts) {
+							var thatthing = game.levels[id].custom_platforms[this.c.type].parts[i];
+							context.beginPath()
+							context.fillStyle = i;
+							context.moveTo(this.x + thatthing[0][0]*(this.w/10) - game.char.position.x + 640, this.y + thatthing[0][1]*(this.h/10));
+							for(var i = 1; i < thatthing.length; i++) {
+								context.lineTo(this.x + thatthing[i][0]*(this.w/10) - game.char.position.x + 640, this.y + thatthing[i][1]*(this.h/10));
+							}
+							context.fill();
+						}
+					};
 				};
 			};
 			function sign(inf){
@@ -64,15 +82,6 @@ var movingCamera = true;
 				this.fs = inf['font-size'];
 				this.text = inf.text;
 				this.stands = 'stands' in inf ? inf.stands : [];
-				this.check = function(pos, w, h){
-					if(this.x + this.w - w*0.75 > pos.x && this.x - w*0.75 < pos.x) {
-						if(this.y < pos.y + pos.velocityY + h/2) {
-							pos.onFloor = true;
-							pos.velocityY = 0;
-						}
-						else pos.onFloor = false;
-					}
-				};
 				this.show = function(context){
 					context.fillStyle = this.c;
 					if(!movingCamera) context.fillRect(this.x,this.y,this.w,this.h);
@@ -88,11 +97,11 @@ var movingCamera = true;
 					};
 				};
 			}
-			for(var i in this.levels[id].platforms) {
-				this.platforms.push(new plat(this.levels[id].platforms[i]))
-			}
 			for(var i in this.levels[id].signs) {
 				this.signs.push(new sign(this.levels[id].signs[i]))
+			}
+			for(var i in this.levels[id].platforms) {
+				this.platforms.push(new plat(this.levels[id].platforms[i]))
 			}
 		};
 		this.frame = function(){
@@ -101,11 +110,11 @@ var movingCamera = true;
 				this.log('Scaling background image to 1280x800 is required, this may help cause lag later on in the game');
 			}
 			this.context.drawImage(bg, 0, 0, 1280, 800);
-			for(var plat of this.platforms) {
-				plat.show(this.context);
-			};
 			for(var sign of this.signs) {
 				sign.show(this.context);
+			};
+			for(var plat of this.platforms) {
+				plat.show(this.context);
 			};
 			this.char.show(this.context).update(this.platforms);
 		};

@@ -26,11 +26,16 @@ function Character (pos = new Vector()) {
 		} else if (shift) {
 			shift = false;
 		}
-		this.onFloor = false;
+		this.position.onFloor = false;
 		for(var p of platforms) {
 			p.check(this.position, this.w, this.h);
 		}
-		this.energy += 0.33;
+		if(this.position.y > 1000) {
+			this.position.y = 400;
+			this.position.x = 640;
+			this.position.velocityX = this.position.velocityY = 0;
+		}
+		this.energy += 0.420;
 		this.position.update();
 		if(this.energy >= 100) this.energy = 100;
 	};
