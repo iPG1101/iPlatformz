@@ -4,11 +4,8 @@ function Vector (x = 640, y = 400, velocityX = 0, velocityY = 0) {
 	this.velocityX = velocityX;
 	this.velocityY = velocityY;
 };
-Vector.prototype.update = function(){
-	this.x += this.velocityX;
-	this.y += this.velocityY;
+Vector.prototype.update = function(xMult = 1, yMult = 1){
+	this.x += this.velocityX * xMult;
+	this.y += this.velocityY * yMult;
 	this.velocityY += 0.3;
-};
-Vector.prototype.updateX = function(multiplier = 0.5){
-	this.x += this.velocityX * multiplier;
 };

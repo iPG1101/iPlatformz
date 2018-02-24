@@ -28,7 +28,11 @@ var movingCamera = true;
 			console.log(`[${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}] ${message}`);
 		};
 		this.loadLevel = function(id){
-			function plat(inf){
+			this.vehicles = [];
+			for(var i of ('vehicles' in game.levels[id] ? game.levels[id].vehicles : [])) {
+				this.vehicles.push(new Vehicle(i.x, i.y, i.t));
+			}
+ 			function plat(inf){
 				this.x = inf[0];
 				this.y = inf[1];
 				this.w = inf[2];
@@ -46,7 +50,7 @@ var movingCamera = true;
 						};
 					};
 					if(this.x + this.w - w/2 > pos.x && this.x - w*0.75 < pos.x) {
-						if(this.y < pos.y +pos.velocityY+ h/2 && this.y +this.h> pos.y+pos.velocityY) {
+						if(this.y < pos.y +pos.velocityY+ h/2 && this.y + this.h> pos.y+pos.velocityY) {
 							pos.onFloor = true;
 							pos.velocityY = 0;
 						}
@@ -117,6 +121,9 @@ var movingCamera = true;
 				plat.show(this.context);
 			};
 			this.char.show(this.context).update(this.platforms);
+			for(var vehicle of this.vehicles) {
+				vehicle.show(this.context);
+			}
 		};
 		this.start = function GameStarter(){
 			this.log('Appending \`canvas\` tag to \`body\`');
