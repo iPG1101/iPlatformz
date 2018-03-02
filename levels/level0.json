@@ -1,17 +1,85 @@
 {
 	"platforms": [
-		[0, 600, 896, 200, "#3A6"],
+		[0, 600, 892, 200, {"type": "land.special.plat1", "passthrough": false}],
 		[350, 440, 200, 125, {"type": "land.floating_island", "passthrough": false}],
 		[25, 340, 150, 125, {"type": "land.floating_island", "passthrough": false}],
-		[640, 500, 256, 100, "#3A6"],
-		[1000, 500, 128, 300, "#3A6"],
-		[1400, 500, 128, 300, "#3A6"],
-		[1800, 500, 1280, 300, "#3A6"]
+		[700, 550, 193, 50, {"type": "land.special.plat2", "passthrough": false}],
+		[1000, 500, 128, 300, {"type": "land.ground", "passthrough": false}],
+		[1400, 500, 128, 300, {"type": "land.ground", "passthrough": false}],
+		[1800, 500, 1280, 300, {"type": "land.ground", "passthrough": false}]
 	],
 	"vehicles": [
-		{"x": 1920, "y": 300}
+		{"x": 1920, "y": 300, "t": "vehicle.car"},
+		{"x": 2560, "y": 300, "t": "vehicle.truck"}
 	],
 	"custom_platforms": {
+		"land.special.plat2": {
+			"parts": {
+				"#3A6": [
+					[-2, 10],
+					[2, 0],
+					[10, 0],
+					[10, 10],
+					[-2, 10]
+				]
+			}
+		},
+		"land.special.plat1": {
+			"parts": {
+				"#3A6": [
+					[0, 0],
+					[8.45, 0],
+					[7.5, 4],
+					[0, 4],
+					[0, 0]
+				],
+				"#640": [
+					[8.45, 0],
+					[10, 0],
+					[10, 8.45],
+					[0, 8.45],
+					[0, 4],
+					[7.5, 4],
+					[8.45, 0]
+				],
+				"#888": [
+					[8.45, 10],
+					[10, 10],
+					[0, 10],
+					[0, 7],
+					[7.75, 7],
+					[8.65, 4],
+					[10, 4],
+					[10, 10],
+					[8.45, 10],
+				]
+			}
+		},
+		"land.ground": {
+			"parts": {
+				"#3A6": [
+					[0, 0],
+					[10, 0],
+					[10, 3.5],
+					[0, 3.5],
+					[0, 0]
+				],
+				"#640": [
+					[0, 3.5],
+					[10, 3.5],
+					[10, 6],
+					[0, 6],
+					[0, 3.5]
+				],
+				"#888": [
+					[0, 6],
+					[10, 6],
+					[10, 10],
+					[0, 10],
+					[0, 6]
+				]
+			}
+		},
 		"land.floating_island": {
 			"parts": {
 				"#3A6": [
@@ -43,7 +111,7 @@
 			"text": "Welcome to iPlatformz!\n To move, you can use the [A] and\n [D] keys. Try it! And to jump you\n can use [W]. Try jumping to the\n next platforms!",
 			"position": [440, 44],
 			"size": [400, 200],
-			"stands": [[440,244,20,356,"#763"],[820,244,20,256,"#763"]],
+			"stands": [[440,244,20,356,"#763"],[820,244,20,356,"#763"]],
 			"colour": ["#CBA", "#420"],
 			"font-size": "24px"
 		},

@@ -16,7 +16,7 @@ function Character (pos = new Vector()) {
 		c.strokeRect(1056, 24, 80,  16);
 		c.fillStyle = '#071';
 		c.fillRect(1058, 26, this.energy*2,  12);
-		if(!!this.vehicle) return this;
+		// if(!!this.vehicle) return this;
 		if(!movingCamera) c.drawImage(this.texture, this.position.x - this.w/2, this.position.y - this.h/2, this.w, this.h);
 		if(movingCamera) c.drawImage(this.texture, 640, this.position.y - this.h/2, this.w, this.h);
 		this.updateTexture();
@@ -145,8 +145,8 @@ function Vehicle(x, y, t){
 		}
 		this.position.y -= this.h/2;
 		if(this.playermounted == true) {
-			game.char.position.x = this.position.x + this.w * (this.direction == 'right' ? 0.6 : 0.2);
-			game.char.position.y = this.position.y + this.h*0.4;
+			game.char.position.x = this.textures[this.texture+'.'+this.direction].mountModifiers[0] * this.w/10 + this.position.x + this.w * (this.direction == 'right' ? 0.6 : 0.2);
+			game.char.position.y = this.textures[this.texture+'.'+this.direction].mountModifiers[1] * this.w/10 + this.position.y + this.h*0.4;
 			this.position.velocityX = game.char.position.velocityX * 3;
 			this.position.velocityY -= 0.12;
 			game.char.position.velocityY = 0;
@@ -173,7 +173,7 @@ function Vehicle(x, y, t){
 		var y2 = entity.position.y;
 		var distance = Math.sqrt(parseInt(Math.pow(x2-x1, 2)) + parseInt(Math.pow(y2-y1, 2)));
 		console.log(distance);
-		if(Math.abs(distance) < this.w){
+		if(Math.abs(distance*1.75) < this.w){
 			return true;
 		};
 		return false;
@@ -200,6 +200,7 @@ window.onkeydown = function(e){
 		for(var i of game.vehicles) {
 			if(i.checkDistance(game.char)){
 				i.mountPlayer();
+				return;
 			}
 		}
 	}
