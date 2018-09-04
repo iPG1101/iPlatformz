@@ -6,11 +6,12 @@
 		[700, 550, 193, 50, {"type": "land.special.plat2", "passthrough": false}],
 		[1000, 500, 128, 300, {"type": "land.ground", "passthrough": false}],
 		[1400, 500, 128, 300, {"type": "land.ground", "passthrough": false}],
-		[1800, 500, 1280, 300, {"type": "land.ground", "passthrough": false}]
+		[1800, 500, 2560, 300, {"type": "land.ground", "passthrough": false}]
 	],
 	"vehicles": [
 		{"x": 1920, "y": 300, "t": "vehicle.car"},
-		{"x": 2560, "y": 300, "t": "vehicle.truck"}
+		{"x": 2560, "y": 300, "t": "vehicle.truck"},
+		{"x": 3200, "y": 300, "t": "vehicle.car2"}
 	],
 	"custom_platforms": {
 		"land.special.plat2": {
